@@ -1,0 +1,1 @@
+docker run --rm -P -p 127.0.0.1:5432:5432 -e POSTGRES_PASSWORD="polak" --name pg postgres:alpine
