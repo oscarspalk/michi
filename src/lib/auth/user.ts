@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { ID } from 'appwrite';
+import { ID, OAuthProvider } from 'appwrite';
 import { goto } from '$app/navigation';
 import { account } from '$lib/appwrite';
 
@@ -12,7 +12,7 @@ const createUser = () => {
 	async function init() {
 		if (!isBrowser) return;
 		try {
-			store.set(await account.get());
+			store.set(await account.getSession('current'));
 		} catch (e) {
 			store.set(null);
 		}
@@ -20,15 +20,12 @@ const createUser = () => {
 
 	init();
 
-	async function register(email, password, name) {
+	async function login() {
 		if (!isBrowser) return;
-		await account.create(ID.unique(), email, password, name);
-		await login(email, password);
-	}
-
-	async function login(email, password) {
-		if (!isBrowser) return;
-		await account.createEmailPasswordSession(email, password);
+		await account.createOAuth2Session(
+            OAuthProvider.Github,
+            'http://localhost:5173/', 'http://localhost:5173/', ['user']
+        )
 		await init();
 		goto('/'); // Redirect to home page after login
 	}
@@ -41,7 +38,6 @@ const createUser = () => {
 	return {
 		// Exposes the store's value with $user
 		subscribe: store.subscribe,
-		register,
 		login,
 		logout,
 		init
