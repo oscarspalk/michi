@@ -1,26 +1,38 @@
-# Svelte starter kit with Appwrite
+# sv
 
-Kickstart your Svelte development with this ready-to-use starter project integrated with [Appwrite](https://www.appwrite.io)
+Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
 
-## 🚀Getting started
+## Creating a project
 
-###
-Clone the Project
-Clone this repository to your local machine using Git:
+If you're seeing this, you've probably already done this step. Congrats!
 
-`git clone https://github.com/appwrite/starter-for-svelte`
+```bash
+# create a new project in the current directory
+npx sv create
 
-## 🛠️ Development guid
-1. **Configure Appwrite**<br/>
-   Navigate to `.env` and update the values to match your Appwrite project credentials.
-2. **Customize as needed**<br/>
-   Modify the starter kit to suit your app's requirements. Adjust UI, features, or backend
-   integrations as per your needs.
-3. **Install dependencies**<br/>
-   Run `npm install` to install all dependencies.
-4. **Run the app**<br/>
-   Start the project by running `npm run dev`.
+# create a new project in my-app
+npx sv create my-app
+```
 
-## 💡 Additional notes
-- This starter project is designed to streamline your Svelte development with Appwrite.
-- Refer to the [Appwrite documentation](https://appwrite.io/docs) for detailed integration guidance.
+## Developing
+
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+
+```bash
+npm run dev
+
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
+
+## Building
+
+To create a production version of your app:
+
+```bash
+npm run build
+```
+
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
